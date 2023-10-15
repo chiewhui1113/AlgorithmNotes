@@ -1,6 +1,6 @@
 # 链表高频算法题
 ## 两个链表第一个公共子节点
-1. 哈希/集合
+1. 哈希/集合<br><br>
 把其中一个链表的元素全部存入集合里，遍历另一个链表。假如集合中存在当前节点，则代表两个链表一定有交点。
 ```Python
 def getIntersectionNode1(self, headA, headB):
@@ -16,7 +16,7 @@ def getIntersectionNode1(self, headA, headB):
   return None # 没有交点
 ```
   
-2. 栈
+2. 栈<br><br>
 先从尾节点循环找出第一个交点，假如两个链表有相交，后面的节点一定是一致的。
 ```Python
 def getIntersectionNode2(self, headA, headB):
@@ -38,7 +38,7 @@ def getIntersectionNode2(self, headA, headB):
   return ans
 ```
 
-3. 拼接两个字符串
+3. 拼接两个字符串<br><br>
 ```Python
 def getIntersectionNode3(self, headA, headB):
   nodeA, nodeB = headA, headB
@@ -48,7 +48,7 @@ def getIntersectionNode3(self, headA, headB):
   return nodeA
 ```
 
-4. 差和双指针
+4. 差和双指针<br><br>
 ```Python
 def getIntersectionNode(self, headA, headB):
   s1, s2 = 0, 0
@@ -72,7 +72,6 @@ def getIntersectionNode(self, headA, headB):
 <br>
 
 ## 判断列表是否为回文序列（LeetCode 234）
-1. 栈
 ```Python
 def isPanlindrome(self, head):
   cur, length = head, 0
