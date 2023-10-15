@@ -92,6 +92,7 @@ typedef struct link {
 struct ListNode {
   int val;
   struct ListNode* next;
+  struct ListNode* prior;
 };
 
 // 创建一个 1 2 3 4 5 的链表
