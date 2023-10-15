@@ -48,7 +48,7 @@ def getIntersectionNode3(self, headA, headB):
   return nodeA
 ```
 
-4. 差和双指针<br><br>
+4. 差和双指针<br>
 ```Python
 def getIntersectionNode(self, headA, headB):
   s1, s2 = 0, 0
