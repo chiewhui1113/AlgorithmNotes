@@ -38,7 +38,7 @@ def getIntersectionNode2(self, headA, headB):
   return ans
 ```
 
-3. 拼接两个字符串<br><br>
+3. 拼接两个字符串<br>
 ```Python
 def getIntersectionNode3(self, headA, headB):
   nodeA, nodeB = headA, headB
