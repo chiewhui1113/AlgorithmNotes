@@ -75,6 +75,7 @@ prevNode->next = prevNode->next->next
 ```C
 prevNode->next = NULL
 ```
+<br>
 
 ## 双向链表
 ### C语言里是如何构造出双向链表的
