@@ -1,4 +1,4 @@
-![level_1_cycle drawio](https://github.com/chiewhui1113/AlgorithmNotes/assets/75370269/289230d8-61fb-498e-bf0e-874ebef3a55c)# 链表中环的问题
+# 链表中环的问题
 ## 判断是否有环（LeetCode 141）
 1. 集合 <br>
 ```Python
