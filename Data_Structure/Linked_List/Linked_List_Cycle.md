@@ -53,7 +53,7 @@ def detectCycle(self, head):
   pos = 0
   fast, slow = head, head 
   while True: 
-      if not (fast.next and fast.next.next): 
+      if not (fast and fast.next): 
           return None
       fast = fast.next.next 
       slow = slow.next 
