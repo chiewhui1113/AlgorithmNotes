@@ -283,3 +283,57 @@ def isPalindrome(self, head):
   
   return True
 ```
+<br>
+
+### K个一组反转（LeetCode 25）
+```Python
+def reverseKGroup(head, k):
+  dummy = ListNode(0, head)
+  pre = tail = dummy 
+  while True: 
+      count = k
+      while count and tail: 
+          count -= 1
+          tail = tail.next 
+      if not tail: 
+          break 
+      head = pre.next 
+      while pre.next != tail: 
+          cur = pre.next 
+          pre.next = cur.next 
+          cur.next = tail.next 
+          tail.next = cur
+      pre = tail = head
+  return dummy.next
+```
+
+```Python
+def reverseKGroup(self, head, k):
+  dummy = ListNode(0, head)
+  pre = end = dummy 
+  while end.next: 
+      i = 0
+      while i < k and end: 
+          end = end.next 
+          i += 1
+      if not end: 
+          break
+      start = pre.next 
+      nextNode = end.next 
+      end.next = None 
+      pre.next = reverse(start)
+      start.next = nextNode 
+      pre = start 
+      end = pre
+  return dummy.next
+  
+def reverse(head): 
+  pre = None
+  cur = head
+  while cur: 
+      nextNode = cur.next 
+      cur.next = pre
+      pre = cur 
+      cur = nextNode
+  return pre
+```
