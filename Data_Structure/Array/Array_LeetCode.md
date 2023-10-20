@@ -1,5 +1,5 @@
 # 数组高频算法题
-在数组的算法题里，双指针的思想特别重要且非常有用。以下的问题都是基于双指针的思路做的。
+在数组的算法题里，双指针的思想特别重要且非常有用。以下的问题大多数基于双指针的思路做的。
 ## 移除所有数值等于val的元素（LeetCode 27）
 1. 快慢指针<br>
 slow之前的位置为有效部分，fast表示当前访问的元素。只要fast的值不会val，则把当前元素添加到arr[slow++]
@@ -55,7 +55,7 @@ def removeDuplicates(nums):
 
 ## 删除有序数组中的重复项II（LeetCode 80）
 ```Python
-def removeDuplicates(self, nums):
+def removeDuplicates(nums):
   i = 0
   for num in nums: 
       if i == 0 or i == 1 or nums[i - 2] != num: 
@@ -66,7 +66,7 @@ def removeDuplicates(self, nums):
 
 ## 按奇偶排序数组（LeetCode 805）
 ```Python
-def sortArrayByParity(self, nums):
+def sortArrayByParity(nums):
   left = 0
   right = len(nums) - 1
   while left < right: 
@@ -83,7 +83,7 @@ def sortArrayByParity(self, nums):
 
 ## 将数组的元素向右轮转k个位置（LeetCode 189）
 ```Python
-def rotate(self, nums, k):
+def rotate(nums, k):
   length = len(nums)
   k %= length
   nums[:] = nums[::-1]
@@ -93,7 +93,7 @@ def rotate(self, nums, k):
 
 ## 数组的区间（LeetCode 228）
 ```Python
-def summaryRanges(self, nums):
+def summaryRanges(nums):
   slow = fast = 0
   res = []
   n = len(nums)
@@ -113,3 +113,57 @@ def summaryRanges(self, nums):
   return list(map(p, res))
 ```
 
+## 数组中只出现一次的数字（LeetCode 136）
+1. 集合
+```Python
+def singleNumber(nums):
+  num_set = set()
+  for num in nums: 
+      if num in num_set: 
+          num_set.remove(num)
+      else: 
+          num_set.add(num)
+  if num_set: 
+      return list(num_set)[0]
+  return None
+```
+2. 异或
+```Python
+def singleNumber(nums):
+  flag = 0
+  for num in nums: 
+      flag ^= num
+  return flag
+```
+
+## 荷兰国旗问题（LeetCode 75）
+1. 快慢指针
+```Python
+def sortColors(nums):
+  left = 0
+  n = len(nums)
+  for right in range(n): 
+      if nums[right] == 0: 
+          nums[left], nums[right] = nums[right], nums[left]
+          left += 1
+  for right in range(left, n): 
+      if nums[right] == 1: 
+          nums[left], nums[right] = nums[right], nums[left]
+          left += 1
+```
+2. 三指针
+```Python
+def sortColors(self, nums):
+  left = index = 0
+  right = len(nums) - 1
+  while index <= right: 
+      if nums[index] == 0: 
+          nums[index], nums[left] = nums[left], nums[index]
+          left += 1
+          index += 1
+      elif nums[index] == 2: 
+          nums[index], nums[right] = nums[right], nums[index]
+          right -= 1
+      else: 
+          index += 1
+```
