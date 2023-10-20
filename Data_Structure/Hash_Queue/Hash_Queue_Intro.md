@@ -11,11 +11,8 @@
 ## 碰撞处理方法
 由于Hash中的每个位置可能存储多个元素，单纯的数组无法存储，常见的解决方法有：<br>
 1. 开放定址法<br>
-一旦发生了冲突，就去寻找下一个空的散列地址。相关信息可以深究Java的ThreadLocal
-<br><br>
-<img width="523" alt="image" src="https://github.com/chiewhui1113/AlgorithmNotes/assets/75370269/df89146c-c707-4f67-b15d-3f5bf96a6bbf">
-<br><br>
-3. 链地址法<br>
+一旦发生了冲突，就去寻找下一个空的散列地址。相关信息可以深究Java的ThreadLocal<br>
+2. 链地址法<br>
 哈希表中的每个单元为链表的头节点。假如发生了冲突，就把新元素添加到链表尾部。Hash的数组长度必须是2的n次幂，且size小于数组的75%
 <br><br>
 
