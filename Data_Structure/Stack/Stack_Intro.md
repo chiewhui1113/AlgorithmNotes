@@ -1,6 +1,7 @@
 # 栈
 栈是很多表达式与符号的运算基础，也是递归的底层实现。基本操作有push(e), pop(), peek(), empty()
 ## 基于数组实现栈
+```Python 
 class Stack(object): 
   def __init__(self): 
     self.items = []
@@ -19,3 +20,4 @@ class Stack(object):
 
   def size(self): 
     return len(self.items)
+```
