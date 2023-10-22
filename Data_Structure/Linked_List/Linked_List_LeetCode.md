@@ -40,6 +40,14 @@ def getIntersectionNode2(self, headA, headB):
 
 3. 拼接两个字符串<br>
 ```Python
+# p1，1->5->7->2->3->4
+# p2，3->7->2->3->4
+# p2走到NULL了，p1还在4，所以把p2调到第一个的头节点1。继续走，p1到NULL调到第二个的头节点3。两个走一次就找到7了
+
+# 因为长度可能不一样，可以看成
+# 1）1->5->7->2->3->4->3->7->2->3->4
+# 2）3->7->2->3->4->1->5->7->2->3->4
+
 def getIntersectionNode3(self, headA, headB):
   nodeA, nodeB = headA, headB
   while nodeA != nodeB: 
@@ -50,15 +58,20 @@ def getIntersectionNode3(self, headA, headB):
 
 4. 差和双指针<br>
 ```Python
+# p1，1->5->7->2->3->4，长度为6
+# p2，3->7->2->3->4，长度为5
+# 为了让两个指针并行，p1需要先走一步
+
 def getIntersectionNode(self, headA, headB):
-  s1, s2 = 0, 0
+  s1, s2 = 0, 0 # 记录两个链表的长度
   nodeA, nodeB = headA, headB
   while headA: 
       s1 += 1
       headA = headA.next 
   while headB: 
       s2 += 1
-      headB = headB.next 
+      headB = headB.next
+  # 让更长的链表的头指针先走n步和第二个链表对齐
   for _ in range(s1 - s2): 
       nodeA = nodeA.next 
   for _ in range(s2 - s1): 
@@ -116,6 +129,8 @@ def mergeTwoLists(self, list1, list2):
 ## 合并k个链表（LeetCode 23）
 ```Python
 def mergeKLists(self, lists):
+
+  # 用上一题的mergeTwoLists
   def mergeTwoLists(list1, list2): 
       dummy = ListNode(-1)
       p = dummy
@@ -135,6 +150,7 @@ def mergeKLists(self, lists):
   if len(lists) == 0: 
       return None
   res = None
+  # 假如有三个lists，先合并第一和第二个，然后再合并（第一+第二）和第三个
   for i in range(len(lists)): 
       res = mergeTwoLists(res, lists[i])
   return res
