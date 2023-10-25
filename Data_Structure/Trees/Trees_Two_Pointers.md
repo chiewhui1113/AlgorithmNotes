@@ -5,6 +5,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
   if (!p && !q) return true;
   else if (!p || !q) return false;
   else if (p->val != q->val) return false;
+  # 左边右边查看是否相等
   return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 }
 ```
@@ -26,7 +27,9 @@ bool isSymmetric(TreeNode* root) {
 TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
   if (root1 == nullptr) return root2;
   if (root2 == nullptr) return root1;
+  # 创建新节点把当前两个值加起来
   TreeNode* node = new TreeNode(root1->val + root2->val);
+  # 左边右边的子节点也+起来
   node->left = mergeTrees(root1->left, root2->left);
   node->right = mergeTrees(root1->right, root2->right);
   return node;
@@ -67,6 +70,7 @@ bool hasPathSum(TreeNode* root, int targetSum) {
 ```C++
 TreeNode* invertTree(TreeNode* root) {
   if (root == nullptr) return NULL;
+  # 平常交换的三个步骤
   TreeNode* temp = root->left;
   root->left = root->right;
   root->right = temp;
@@ -88,6 +92,7 @@ TreeNode* invertTree(TreeNode* root) {
 ```
 ### 层次遍历
 ```C++
+# 每一层交换
 TreeNode* invertTree(TreeNode* root) {
   queue<TreeNode*> que;
   if (root != NULL) que.push(root);
