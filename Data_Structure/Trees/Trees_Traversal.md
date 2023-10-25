@@ -33,14 +33,14 @@ vector<int> inorderTraversal(TreeNode* root) {
 ```
 ### 后序
 ```C++
-void inOrder(TreeNode* root, vector<int>& res) {
+void postOrder(TreeNode* root, vector<int>& res) {
   if (root == NULL) return;
   inOrder(root->left, res);
   inOrder(root->right, res);
   res.push_back(root->val);
 }
 
-vector<int> inorderTraversal(TreeNode* root) {
+vector<int> postOrderTraversal(TreeNode* root) {
   vector<int> res;
   inOrder(root, res);
   return res;
