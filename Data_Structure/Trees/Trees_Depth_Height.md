@@ -38,6 +38,7 @@ int height(TreeNode* root) {
 bool isBalanced(TreeNode* root) {
   return height(root) >= 0;
 }
+```
 
 ## 最小深度（LeetCode 111）
 ```C++
