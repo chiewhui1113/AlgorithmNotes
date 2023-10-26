@@ -172,3 +172,27 @@ int findBottomLeftValue(TreeNode* root) {
   return tmp->val;
 }
 ```
+
+## 最近公共祖先（LeetCode 236）
+<img width="420" alt="image" src="https://github.com/chiewhui1113/AlgorithmNotes/assets/75370269/adbbc974-106d-4755-bf9a-04a8dcb720ce"><br>
+6的祖先节点为3和5，7的祖先节点为2，5和3。因此，他们的最近公共祖先为5。假如root是p和q的最近公共祖先：
+1. p和q都在root的子树中，位于root的两侧
+2. p = root，q在root的左或右子树
+3. q = root，p在root的左或右子树
+
+因此，我们需要递归判断：
+
+1. 如果left和right都是NULL，代表p和q都不存在于root的子树中，返回NULL
+2. 如果left和right都不为null，代表p和q在root的两侧，返回root
+3. 如果left为空right不为空，需要判断root是否是p或q入，如果是说明一方是另一方的祖先。否则，说明left的子树没查到，需要递归去查right的子树里有没有
+```C++
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+  if (!root || root == p || root == q) return root;
+  TreeNode* left = lowestCommonAncestor(root->left, p, q);
+  TreeNode* right = lowestCommonAncestor(root->right, p, q);
+  if (!left && !right) return NULL;
+  if (!left) return right;
+  if (!right) return left;
+  return root;
+}
+```
