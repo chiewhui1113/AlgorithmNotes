@@ -18,6 +18,25 @@ void quickSort(int q[], int l, int r) {
   quickSort(q, j + 1, r); // 递归处理右边段
 }
 ```
+## 数组第k大（LeetCode 215）
+在快速排序时，pivot每一轮排序结束都会在正确的位置上。假设当前pivot排序后索引为1，代表当前pivot第二小。
+```C++
+int quickSort(vector<int>& nums, int start, int end, int k) {
+  if (start == end) return nums[k];
+  int pivot = nums[start + (end - start) / 2], l = start - 1, r = end + 1;
+  while (l < r) {
+      do l++; while (nums[l] < pivot);
+      do r--; while (nums[r] > pivot);
+      if (l < r) swap(nums[l], nums[r]);
+  }
+  if (k <= r) return quickSort(nums, start, r, k); // r是pivot的前一个元素
+  else return quickSort(nums, r + 1, end, k);
+}
+
+int findKthLargest(vector<int>& nums, int k) {  
+  return quickSort(nums, 0, nums.size() - 1, nums.size() - k);
+```
+
 
 ## 归并排序（Merge Sort）
 归排是基于分治的一个排序算法：
@@ -30,21 +49,18 @@ void quickSort(int q[], int l, int r) {
 代码
 ```C++
 void mergeSort(int q[], int l, int r) {
-	if (l >= r) return; // 数组长度不大于1，返回
-	int mid = l + r >> 1; // 确定分界点
-	mergeSort(q, l, mid); // 根据分界点把数组一分为二
-	mergeSort(q, mid + 1, r);
-	int temp[r - l + 1]; // 创建临时数组
-	int k = 0, i = l, j = mid + 1; // i和j是双指针，k是临时数组的指针
-	while (q[i] != null && q[j] != null) { // 归并，合二为一
-		if (q[i] <= q[j]) { // 先记录小的值
-			temp[k++] = q[i++];
-		} else {
-			temp[k++] = q[j++];
-		}
-	}
-	while (q[i] != null) temp[k++] = q[i++]; // 假如还有剩下的值
-	while (q[j] != null) temp[k++] = q[j++];
-	for (int i = l, k = 0; i <= r; i++, k++) q[i] = temp[k]; // 更新原数组
+    if (l >= r) return;
+    int mid = l + (r - l) / 2;
+    mergeSort(q, l, mid);
+    mergeSort(q, mid + 1, r);
+    int temp[r - l + 1];
+    int k = 0, i = l, j = mid + 1;
+    while (i <= mid && j <= r) {
+        if (q[i] <= q[j]) temp[k++] = q[i++];
+        else temp[k++] = q[j++];
+    }
+    while (i <= mid) temp[k++] = q[i++];
+    while (j <= r) temp[k++] = q[j++];
+    for (int i = l, k = 0; i <= r; i++, k++) q[i] = temp[k];
 }
 ```
