@@ -143,3 +143,66 @@ bool isAnagram(string s, string t) {
   return true;
 }
 ```
+
+## 最长公共前缀（LeetCode 14）
+竖着比较
+```C++
+string longestCommonPrefix(vector<string>& strs) {
+  if (!strs.size()) return "";
+  int length = strs[0].size();
+  int count = strs.size();
+  for (int i = 0; i < length; i++) {
+      char c = strs[0][i];
+      for (int j = 1; j < count; j++) {
+          if (i == strs[j].size() || strs[j][i] != c) {
+              return strs[0].substr(0, i);
+          }
+      }
+  }
+  return strs[0];
+}
+```
+横着比较
+```C++
+string longest (const string& str1, const string& str2) {
+  int length = min(str1.size(), str2.size());
+  int idx = 0;
+  while (idx < length && str1[idx] == str2[idx]) idx++;
+  return str1.substr(0, idx);
+}
+
+string longestCommonPrefix(vector<string>& strs) {
+  if (!strs.size()) return "";
+  string prefix = strs[0];
+  int count = strs.size();
+  for (int i = 1; i < count; i++) {
+      prefix = longest(prefix, strs[i]);
+      if (!prefix.size()) return "";
+  }
+  return prefix;
+}
+```
+
+## 字符串压缩问题（LeetCode 443）
+```C++
+int compress(vector<char>& chars) {
+  int n = chars.size();
+  int write = 0, left = 0;
+  for (int read = 0; read < n; read++) {
+      if (read == n - 1 || chars[read] != chars[read + 1]) {
+          chars[write++] = chars[read];
+          int num = read - left + 1;
+          if (num > 1) {
+              int anchor = write;
+              while (num > 0) {
+                  chars[write++] = num % 10 + '0';
+                  num /= 10;
+              }
+              reverse(&chars[anchor], &chars[write]);
+          }
+          left = read + 1;
+      }
+  }
+  return write;
+}
+```
