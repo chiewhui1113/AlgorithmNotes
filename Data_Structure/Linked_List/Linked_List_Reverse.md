@@ -17,7 +17,7 @@ def reverseList(head):
 ```
 <br>
 
-3. 用三指针<br><br>
+2. 用三指针<br><br>
 ![算法-7](https://github.com/chiewhui1113/AlgorithmNotes/assets/75370269/4c12ea3e-746f-4160-9190-a8bed01fceee)
 ```Python
 def reverseList(head):
@@ -34,7 +34,7 @@ def reverseList(head):
 ```
 <br>
 
-5. 递归<br><br>
+3. 递归<br><br>
 ![算法-7](https://github.com/chiewhui1113/AlgorithmNotes/assets/75370269/cdf508f1-63e0-4b19-8cd1-46aaca5e7dac)
 ```Python
 def reverseList(head):
