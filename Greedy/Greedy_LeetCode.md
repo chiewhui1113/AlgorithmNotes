@@ -93,3 +93,37 @@ int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
   return start;
 }
 ```
+
+## 跳跃游戏（LeetCode 55）
+```C++
+bool canJump(vector<int>& nums) {
+  int n = nums.size();
+  int rightmost = 0;
+  for (int i = 0; i < n; i++) {
+      if (i <= rightmost) {
+          rightmost = max(rightmost, i + nums[i]);
+          if (rightmost >= n - 1) {
+              return true;
+          }
+      }
+  }
+  return false;
+}
+```
+
+## 最短跳跃游戏（LeetCode 45）
+```C++
+int jump(vector<int>& nums) {
+  int maxPos = 0, n = nums.size(), end = 0, steps = 0;
+  for (int i = 0; i < n - 1; i++) {
+      if (maxPos >= i) {
+          maxPos = max(maxPos, nums[i] + i);
+          if (i == end) {
+              end = maxPos;
+              steps++;
+          }
+      }
+  }
+  return steps;
+}
+```
