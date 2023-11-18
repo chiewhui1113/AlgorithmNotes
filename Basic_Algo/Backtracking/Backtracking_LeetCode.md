@@ -166,3 +166,108 @@ private:
 
 };
 ```
+
+## 括号生存问题（LeetCode 22）
+```C++
+void backtracking(vector<string>& res, string& s, int open, int close, int n) {
+if (s.size() == n * 2) {
+    res.push_back(s);
+    return;
+}
+if (open < n) {
+    s.push_back('(');
+    backtracking(res, s, open + 1, close, n);
+    s.pop_back();
+}
+if (close < open) {
+    s.push_back(')');
+    backtracking(res, s, open, close + 1, n);
+    s.pop_back();
+}
+}
+
+vector<string> generateParenthesis(int n) {
+vector<string> res;
+string s;
+backtracking(res, s, 0, 0, n);
+return res;
+}
+```
+
+## 电话号码问题（LeetCode 17）
+```C++
+void backtracking(vector<string>& res, string& c, unordered_map<char, string>& phoneMap, int ind, string& digits) {
+  if (ind == digits.length()) {
+      res.push_back(c);
+      return;
+  } else {
+      char digit = digits[ind];
+      string letters = phoneMap.at(digit);
+      for (char letter : letters) {
+          c.push_back(letter);
+          backtracking(res, c, phoneMap, ind + 1, digits);
+          c.pop_back();
+      }
+  }
+}
+
+vector<string> letterCombinations(string digits) {
+  vector<string> res;
+  if (digits.empty()) return res;
+  string c;
+  unordered_map<char, string> phoneMap {
+      {'2', "abc"}, 
+      {'3', "def"}, 
+      {'4', "ghi"}, 
+      {'5', "jkl"}, 
+      {'6', "mno"}, 
+      {'7', "pqrs"}, 
+      {'8', "tuv"}, 
+      {'9', "wxyz"}
+  };
+  backtracking(res, c, phoneMap, 0, digits);
+  return res;
+} 
+```
+
+## 复原IP地址（LeetCode 93）
+```C++
+vector<string> res;
+
+bool isValid(string& s, int start, int end) {
+  if (start > end) return false;
+  if (s[start] == '0' && start != end) return false;
+  int num = 0;
+  for (int i = start; i <= end; i++) {
+      if (s[i] > '9' || s[i] < '0') return false;
+      num = num * 10 + (s[i] - '0');
+      if (num > 255) return false;
+  }
+  return true;
+}
+
+void backtracking(string& s, int start, int pointNum) {
+  if (pointNum == 3) {
+      if (isValid(s, start, s.size() - 1)) {
+          res.push_back(s);
+      }
+      return;
+  }
+  for (int i = start; i < s.size(); i++) {
+      if (isValid(s, start, i)) {
+          s.insert(s.begin() + i + 1, '.');
+          backtracking(s, i + 2, pointNum + 1);
+          s.erase(s.begin() + i + 1);
+      } else {
+          break;
+      }
+  }
+}
+
+vector<string> restoreIpAddresses(string s) {
+  res.clear();
+  if (s.size() < 4 || s.size() > 12) return res;
+  backtracking(s, 0, 0);
+  return res;
+}   
+```
