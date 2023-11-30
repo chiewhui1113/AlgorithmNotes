@@ -65,7 +65,7 @@ bool hasPathSum(TreeNode* root, int targetSum) {
          hasPathSum(root->right, targetSum - root->val);
 }
 ```
-## 反转二叉树*L（LeetCode 226）
+## 反转二叉树（LeetCode 226）
 ### 前序
 ```C++
 TreeNode* invertTree(TreeNode* root) {
